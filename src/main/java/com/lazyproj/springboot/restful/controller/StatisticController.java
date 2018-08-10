@@ -1,34 +1,40 @@
 package com.lazyproj.springboot.restful.controller;
 
-import com.lazyproj.springboot.restful.pojo.po.Statistic;
+import com.lazyproj.springboot.restful.pojo.entity.Statistic;
 import com.lazyproj.springboot.restful.service.IStatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@Controller
+//@RestController
 //@RequestMapping("/api/v1/statistics")
 public class StatisticController {
     @Autowired
     private IStatisticService statisticService;
+    @Autowired
+	private HttpServletRequest req;
 
     @PostMapping("/api/v1/statistics")
-    public List<Statistic> postStatistic(@RequestBody Statistic statistic){
-        return null;
+    public Statistic postStatistic(@RequestBody Statistic statistic){
+		return statistic;
     }
 
     // 查询列表
     @GetMapping("/api/v1/statistics")
-    public Statistic getStatisticList(){
+    public List<Statistic> getStatisticList(){
         return null;
     }
 
     // 查询单个
     @GetMapping("/api/v1/statistics/{statisticId}")
     public Statistic getStatisticById(@PathVariable("statisticId") String statisticId){
-        return null;
+		boolean read = Boolean.parseBoolean(req.getParameter("read"));
+		System.out.println(read);
+		Statistic statistic = new Statistic();
+		statistic.setStatisticId(statisticId);
+		return statistic;
     }
 
     @PutMapping("/api/v1/statistics/{statisticId}")

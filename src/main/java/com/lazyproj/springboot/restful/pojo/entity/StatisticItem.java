@@ -1,4 +1,4 @@
-package com.lazyproj.springboot.restful.pojo.po;
+package com.lazyproj.springboot.restful.pojo.entity;
 
 import java.util.Date;
 

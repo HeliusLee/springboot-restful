@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StatisticServiceImpl implements IStatisticService {
-    @Autowired
-    private IStatisticDao statisticDao;
+//    @Autowired
+//    private IStatisticDao statisticDao;
 }

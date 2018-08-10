@@ -1,4 +1,8 @@
 package com.lazyproj.springboot.restful.dao;
 
-public interface IStatisticDao {
+import com.lazyproj.springboot.restful.pojo.entity.Statistic;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface IStatisticDao extends PagingAndSortingRepository<Statistic, String> {
+
 }
