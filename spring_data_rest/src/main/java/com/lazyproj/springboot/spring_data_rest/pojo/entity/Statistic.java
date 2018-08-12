@@ -1,8 +1,12 @@
 package com.lazyproj.springboot.spring_data_rest.pojo.entity;
 
+import com.lazyproj.springboot.spring_data_rest.converter.JpaConverterJson;
+
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Statistic {
@@ -12,7 +16,8 @@ public class Statistic {
 //	@Column(name = "userid")
 	private String userId;
 	private String title;
-	private String fields;
+	@Convert(converter = JpaConverterJson.class)
+	private List<String> fields;
 //	@Column(name = "createtime")
 	private Date createTime;
 
@@ -40,11 +45,11 @@ public class Statistic {
 		this.title = title;
 	}
 
-	public String getFields() {
+	public List<String> getFields() {
 		return fields;
 	}
 
-	public void setFields(String fields) {
+	public void setFields(List<String> fields) {
 		this.fields = fields;
 	}
 
