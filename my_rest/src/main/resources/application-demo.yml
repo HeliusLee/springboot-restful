@@ -1,0 +1,25 @@
+# 本地环境
+server:
+  port: 8080
+
+#  datasource:
+    # 驱动配置信息
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url:
+#    username:
+#    password:
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.lazyproj.springboot.my_restful.pojo.entity;com.lazyproj.springboot.my_restful.pojo.domain
+
+logging:
+  level:
+    com:
+      lazyproj:
+        springboot:
+          my_restful:
+            dao: debug

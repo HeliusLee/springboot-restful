@@ -1,0 +1,30 @@
+# 本地环境
+server:
+  port: 8080
+
+spring:
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy:  org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+#  datasource:
+    # 驱动配置信息
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url:
+#    username:
+#    password:
+
+  data:
+    rest:
+      base-path: /api/v1
+
+
+logging:
+  level:
+    com:
+      lazyproj:
+        springboot:
+          spring_data_rest:
+            dao: debug
