@@ -1,8 +1,6 @@
 package com.lazyproj.springboot.restful.pojo.entity;
 
-import javax.persistence.OneToMany;
 import java.util.Date;
-import java.util.List;
 
 public class Statistic {
 	private String statisticId;

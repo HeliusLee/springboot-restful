@@ -1,5 +1,7 @@
 package com.lazyproj.springboot.restful.controller;
 
+import com.lazyproj.springboot.restful.context.RestfulContext;
+import com.lazyproj.springboot.restful.pojo.domain.Sort;
 import com.lazyproj.springboot.restful.pojo.entity.Statistic;
 import com.lazyproj.springboot.restful.service.IStatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-//@RestController
+@RestController
 //@RequestMapping("/api/v1/statistics")
 public class StatisticController {
     @Autowired
@@ -30,6 +32,9 @@ public class StatisticController {
     // 查询单个
     @GetMapping("/api/v1/statistics/{statisticId}")
     public Statistic getStatisticById(@PathVariable("statisticId") String statisticId){
+		String sortStr = req.getQueryString();
+		Sort sort = new Sort(sortStr);
+		System.out.println(sortStr);
 		boolean read = Boolean.parseBoolean(req.getParameter("read"));
 		System.out.println(read);
 		Statistic statistic = new Statistic();
