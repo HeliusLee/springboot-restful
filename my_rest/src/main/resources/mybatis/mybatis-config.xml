@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<settings>
+    <!-- Globally enables or disables any caches configured in any mapper under this configuration -->
+    <setting name="cacheEnabled" value="true"/>
+    <!-- Sets the number of seconds the driver will wait for a response from the database -->
+    <setting name="defaultStatementTimeout" value="3000"/>
+    <!-- Enables automatic mapping from classic database column names A_COLUMN to camel case classic Java property names aColumn -->
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
+    <!-- Allows JDBC support for generated keys. A compatible driver is required.
+    This setting forces generated keys to be used if set to true,
+     as some drivers deny compatibility but still work -->
+    <setting name="useGeneratedKeys" value="true"/>
+
+</settings>
+
+<!-- Continue editing here -->
+    <typeAliases>
+
+        <typeAlias alias="Integer" type="java.lang.Integer" />
+        <typeAlias alias="Long" type="java.lang.Long" />
+        <typeAlias alias="HashMap" type="java.util.HashMap" />
+        <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
+        <typeAlias alias="ArrayList" type="java.util.ArrayList" />
+        <typeAlias alias="LinkedList" type="java.util.LinkedList" />
+
+        <package name="com.lazyproj.springboot.my_restful.dao"/>
+
+    </typeAliases>
+    
+    
+    <!--<plugins>-->
+        <!--&lt;!&ndash; com.github.pagehelper为PageHelper类所在包名 &ndash;&gt;-->
+        <!--<plugin interceptor="com.github.pagehelper.PageInterceptor">-->
+            <!--&lt;!&ndash;会将RowBounds第一个参数offset当成PageNum使用&ndash;&gt;-->
+            <!--<property name="offsetAsPageNum" value="true"/>-->
+            <!--&lt;!&ndash;设置为true时，使用RowBounds分页会进行count查询&ndash;&gt;-->
+            <!--<property name="rowBoundsWithCount" value="true"/>-->
+            <!--&lt;!&ndash;设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果&ndash;&gt;-->
+            <!--<property name="pageSizeZero" value="true"/>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
+
+</configuration>
