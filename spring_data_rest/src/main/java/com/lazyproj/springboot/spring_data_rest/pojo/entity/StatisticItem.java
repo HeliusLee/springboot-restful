@@ -1,19 +1,31 @@
 package com.lazyproj.springboot.spring_data_rest.pojo.entity;
 
+import com.lazyproj.springboot.spring_data_rest.converter.JpaConverterJson;
+import com.lazyproj.springboot.spring_data_rest.pojo.entity.pk.StatisticItemPk;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name = "statistic_item")
+@IdClass(StatisticItemPk.class)
 public class StatisticItem {
-    private String statisticId;
+    @ManyToOne
+    @JoinColumn(name = "statisticId")
+    private Statistic statistic;
+    @Id
     private String userId;
-    private String data;
+    @Convert(converter = JpaConverterJson.class)
+    private List<String> data;
+    @Id
     private Date createTime;
 
-    public String getStatisticId() {
-        return statisticId;
+    public Statistic getStatistic() {
+        return statistic;
     }
 
-    public void setStatisticId(String statisticId) {
-        this.statisticId = statisticId;
+    public void setStatistic(Statistic statistic) {
+        this.statistic = statistic;
     }
 
     public String getUserId() {
@@ -24,11 +36,11 @@ public class StatisticItem {
         this.userId = userId;
     }
 
-    public String getData() {
+    public List<String> getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(List<String> data) {
         this.data = data;
     }
 

@@ -1,20 +1,14 @@
 package com.lazyproj.springboot.restful.pojo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
 
-@Entity
 public class Statistic {
-	@Id
-//	@Column(name = "statisticid")
 	private String statisticId;
-//	@Column(name = "userid")
 	private String userId;
 	private String title;
 	private String fields;
-//	@Column(name = "createtime")
 	private Date createTime;
 
 	public String getStatisticId() {
