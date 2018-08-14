@@ -11,4 +11,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @Description
  */
 public interface IStatisticItemDao extends PagingAndSortingRepository<StatisticItem, StatisticItemPk> {
+
 }
