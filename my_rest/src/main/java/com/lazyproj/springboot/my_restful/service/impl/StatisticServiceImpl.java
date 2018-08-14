@@ -16,6 +16,6 @@ public class StatisticServiceImpl implements IStatisticService {
 
 	@Override
 	public List<Statistic> getStatisticList(Sort sort) {
-		return statisticDao.selectStatisticList(sort);
+		return statisticDao.selectAllWithSorted(sort);
 	}
 }

@@ -3,11 +3,15 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lazyproj.springboot.my_restful.dao.IStatisticDao">
-	<select id="selectStatisticList" parameterType="sort" resultType="statistic">
-		SELECT * FROM statistic ORDER BY
-		<foreach collection="orderList" index="index" item="order" separator=",">
-			#{order.field} #{order.direction}
-		</foreach>
+	<select id="selectAllWithSorted" parameterType="sort" resultType="statistic">
+		SELECT *
+		FROM statistic
+		<if test="orderList != null">
+			ORDER BY
+			<foreach collection="orderList" index="index" item="order" separator=",">
+				${order.field} ${order.direction}
+			</foreach>
+		</if>
 	</select>
 	<!--<insert id="insertMixin" parameterType="statistic">-->
 		<!--INSERT INTO mixin-->
