@@ -8,12 +8,14 @@
 
 3.[菜鸟教程.RESTful 架构详解]: http://www.runoob.com/w3cnote/restful-architecture.html
 
+4.[moonz-wu.好RESTful API的设计原则]: http://www.cnblogs.com/moonz-wu/p/4211626.html
+
 
 ## 1. 基础概念
 
 ### 1.1. 起源
 
-名称:REST(Representational State Transfer)
+名称:**REST(Representational State Transfer)**
 
 译名:表现层状态转化
 
@@ -41,25 +43,31 @@ HTTP协议是一种无状态协议(Stateless Protocol),所有状态都保存在�
 
 
 
-### 1.2. 核心概念
+### 1.2. 定义(Definitions)
 
-#### 1.2.1. 资源(Resource)
+#### 1.2.1. 核心定义
+
+##### 1.2.1.1. 资源(Resource)
 
 即**网络上的一个实体,或者说是网络上的一个具体信息**.可以是一段文本,一张图片,或者是一种服务.
 
+##### 1.2.1.2. 集合(Collection)
 
+某种资源的聚合体
 
-#### 1.2.2. 唯一标识(URI, Uniform Resource Identifier)
+##### 1.2.1.3. 终端(EndPoint)
 
-"资源"在网络上的唯一标识(事实上同一个资源的标识并不一定是惟一的),在RESTful API中也是**资源的访问地址**
+该API在RESTful API中的**资源的访问地址**,即统一资源定位符(URI, Uniform Resource Identifier),代表一个集合,或者某个具体的资源
 
-
-
-#### 1.2.3. 动词(HTTP METHOD)
+##### 1.2.1.4. HTTP动词(HTTP METHOD)
 
 URI
 
 
+
+#### 1.2.2. 其他补充
+
+##### 1.2.2.1 幂等(Idempotent)
 
 ## 2. 设计指南
 
