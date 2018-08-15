@@ -22,11 +22,11 @@ public class Sort {
 		this.orderList = orderList;
 	}
 
-	public Sort(String sortStr) {
-		if (sortStr == null) {
+	public Sort(String src) {
+		if (src == null) {
 			return;
 		}
-		String sort = sortStr.trim();
+		String sort = src.trim();
 		String[] fieldArr = sort.split(",");
 		List<Order> orderList = new ArrayList<>();
 		for (String field : fieldArr) {

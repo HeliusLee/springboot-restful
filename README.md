@@ -77,7 +77,10 @@ GET /statistics/fields=userId,title,fields
 
 1.对dto字段进行过滤?
 
-2.动态修改sql?(匹配实体,[]()
+2.动态修改sql?(匹配实体)
 
 ## 3. 开发实战
 
+1.[smallnest.最好的8个 Java RESTful 框架]: http://colobu.com/2015/11/15/best-available-java-restful-micro-frameworks/
+
+2.[smallnest.Java RESTful框架的性能比较]: http://colobu.com/2015/11/17/Jax-RS-Performance-Comparison/
