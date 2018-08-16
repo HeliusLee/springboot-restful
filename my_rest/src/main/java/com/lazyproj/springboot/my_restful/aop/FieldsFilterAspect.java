@@ -1,5 +1,6 @@
 package com.lazyproj.springboot.my_restful.aop;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
@@ -34,7 +35,6 @@ public class FieldsFilterAspect {
 
 	@Around("controllerPointcut()")
 	public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		System.out.println(RestfulApiUtils.getRestfulParams().toString());
 
 		Object[] objects = proceedingJoinPoint.getArgs();// 获取目标参数
 		Signature sig = proceedingJoinPoint.getSignature();// 获取目标签名
@@ -63,7 +63,6 @@ public class FieldsFilterAspect {
 			stringBuffer.append(" The called method: ")
 					.append(proceedingJoinPoint.getSignature().getName()).append("(). The Exception Message is ");
 			stringBuffer.append(e.toString());
-			System.out.println(stringBuffer);
 			throw e;
 		}
 

@@ -26,6 +26,9 @@ public class RestfulApiUtils {
 		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		String queryString = req.getQueryString();
 		MultiMap values = new MultiMap();
+		if (values == null) {
+			return null;
+		}
 		UrlEncoded.decodeTo(queryString, values, "UTF-8");
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = objectMapper.valueToTree(values);
