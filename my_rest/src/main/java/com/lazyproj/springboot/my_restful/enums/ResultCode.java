@@ -9,10 +9,10 @@ import org.springframework.http.HttpStatus;
  * @Description
  */
 public interface ResultCode {
-	String ERROR_CODE_FOR_UNKNOWN_ERROR = "unknown";
+	int ERROR_CODE_FOR_UNKNOWN_ERROR = 0;
 	String ERROR_MESSEGE_FOR_UNKNOWN_ERROR = "no more detail";
 
-	String code();
+	int code();
 	String msg();
 	HttpStatus httpStatus();
 
@@ -20,7 +20,7 @@ public interface ResultCode {
 		INSTANCE;
 
 		@Override
-		public String code() {
+		public int code() {
 			return ERROR_CODE_FOR_UNKNOWN_ERROR;
 		}
 

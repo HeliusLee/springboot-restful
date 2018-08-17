@@ -1,36 +1,36 @@
 package com.lazyproj.springboot.my_restful.aop;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lazyproj.springboot.my_restful.frame.JsonMixIn;
-import com.lazyproj.springboot.my_restful.utils.RestfulApiUtils;
+import com.github.pagehelper.PageInfo;
+import com.lazyproj.springboot.my_restful.frame.restful.Page;
+import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.lang.reflect.Method;
 
 /**
  * @Author heliuslee@live.cn
- * @Date 2018/08/15 10:09
+ * @Date 2018/08/17 10:33
  * @Description
  */
-@Aspect
-@Order(10)
-@Component
-public class FieldsFilterAspect {
+//@Aspect
+//@Order(1)
+//@Component
+public class RestfulPagingAspect {
 	@Pointcut("execution(public * com.lazyproj.springboot.my_restful.controller.*.*(..))")
 	private void controllerPointcut() {
 	}
 
 	@Around("controllerPointcut()")
 	public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-
 		Object[] objects = proceedingJoinPoint.getArgs();// 获取目标参数
 		Signature sig = proceedingJoinPoint.getSignature();// 获取目标签名
 
@@ -49,23 +49,30 @@ public class FieldsFilterAspect {
 			return proceedingJoinPoint.proceed();
 		}
 
-		Object object;
+		RestfulResult restfulResult = new RestfulResult();
+
+		Object result;
 		StringBuffer stringBuffer = new StringBuffer();
+
 		try {
-			object = proceedingJoinPoint.proceed();// 执行方法
+			result = proceedingJoinPoint.proceed();// 执行方法
 		} catch (Throwable e) {
-			stringBuffer.delete(0, stringBuffer.length());
-			stringBuffer.append(" The called method: ")
-					.append(proceedingJoinPoint.getSignature().getName()).append("(). The Exception Message is ");
-			stringBuffer.append(e.toString());
 			throw e;
 		}
 
-		ObjectMapper objectMapper = new ObjectMapper().addMixIn(Object.class, JsonMixIn.class);
-		objectMapper.setFilterProvider(RestfulApiUtils.getFieldsFilter());
+		System.out.println(result.getClass());
+		if (!(result instanceof PageInfo)) {
+			restfulResult.setData(result);
+			return restfulResult;
+		}
 
-		String src = objectMapper.writeValueAsString(object);
-		Object o = objectMapper.readValue(src, returnType);
-		return o;
+		PageInfo pageInfo = ((PageInfo) result);
+		if (pageInfo.getPageNum() == 0) {
+			restfulResult.setData(pageInfo.getList());
+		}else {
+			restfulResult.setData(pageInfo.getList());
+			restfulResult.setPaging(new Page(pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize()));
+		}
+		return restfulResult;
 	}
 }

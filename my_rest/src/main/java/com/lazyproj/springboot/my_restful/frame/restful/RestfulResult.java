@@ -1,6 +1,8 @@
 package com.lazyproj.springboot.my_restful.frame.restful;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.lazyproj.springboot.my_restful.enums.BizResultCode;
+import com.lazyproj.springboot.my_restful.frame.Result;
 
 /**
  * RESTful通用返回格式
@@ -10,26 +12,33 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * @Description
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RestfulResult {
-	private Object data;// 响应数据
-	private String status;// 响应状态码
+public class RestfulResult<T> implements Result {
+	private static final String DEFAULT_MESSAGE = "no more details";
+
+	private T data;// 响应数据
+	private int status;// 响应状态码
 	private String msg;// 响应详情
 	private Page paging;// 分页信息
 	private String links;// 相关链接
 
-	public Object getData() {
+	public RestfulResult() {
+		this.status = BizResultCode.OK.code();
+		this.msg = DEFAULT_MESSAGE;
+	}
+
+	public T getData() {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

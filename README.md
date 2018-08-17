@@ -1,4 +1,4 @@
-# RESTful 
+# RESTful API 极懒笔记之一 <基础篇> 
 
 ## 0. 参考资料(Reference)
 
@@ -192,6 +192,8 @@ GET /statistics?expand=userId 扩展指定字段信息(userId)
 
 ### 3.6. 状态码(Status Code)
 
+https://alidg.me/blog/2016/9/24/rest-api-error-handling
+
 ### 3.7. 使用HATEOAS
 
 **H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tate 超媒体作为应用状态的引擎,使客户端可以更方便进行下一步操作
@@ -205,3 +207,22 @@ GET /statistics?expand=userId 扩展指定字段信息(userId)
 1.[smallnest.最好的8个 Java RESTful 框架]: http://colobu.com/2015/11/15/best-available-java-restful-micro-frameworks/
 
 2.[smallnest.Java RESTful框架的性能比较]: http://colobu.com/2015/11/17/Jax-RS-Performance-Comparison/
+
+
+
+
+
+坑点1 将版本号作为url参数时,可能会无法读取最后一个小数点后面的数据
+
+```java
+@Configuration
+public class MvcConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer.setUseSuffixPatternMatch(false);//可以让URL路径中带小数点 '.' 后面的值不被忽略 
+    }
+
+}
+```
+

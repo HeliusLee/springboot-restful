@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
  * @Description
  */
 public class BizException extends RuntimeException{
-	private String bizCode;// 业务状态码
+	private int bizCode;// 业务状态码
 	private HttpStatus httpStatus;// HTTP 状态码
 
 	public BizException(ResultCode resultCode){
@@ -21,17 +21,17 @@ public class BizException extends RuntimeException{
 		this.httpStatus = resultCode.httpStatus();
 	}
 
-	public BizException(String code, String message) {
+	public BizException(int code, String message) {
 		super(message);
 		this.bizCode = code;
 		this.httpStatus = HttpStatus.BAD_REQUEST;
 	}
 
-	public String getBizCode() {
+	public int getBizCode() {
 		return bizCode;
 	}
 
-	public void setBizCode(String bizCode) {
+	public void setBizCode(int bizCode) {
 		this.bizCode = bizCode;
 	}
 

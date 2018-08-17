@@ -25,10 +25,10 @@ public class RestfulApiUtils {
 	public static JsonNode getRestfulParams() {
 		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		String queryString = req.getQueryString();
-		MultiMap values = new MultiMap();
-		if (values == null) {
+		if (queryString == null) {
 			return null;
 		}
+		MultiMap values = new MultiMap();
 		UrlEncoded.decodeTo(queryString, values, "UTF-8");
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = objectMapper.valueToTree(values);
@@ -36,7 +36,7 @@ public class RestfulApiUtils {
 	}
 
 	private static Fields getFields() {
-		if (getRestfulParams().get("fields") == null){
+		if (getRestfulParams()== null || getRestfulParams().get("fields") == null){
 			return null;
 		}
 
@@ -76,4 +76,5 @@ public class RestfulApiUtils {
 
 		return simpleFilterProvider;
 	}
+
 }

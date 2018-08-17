@@ -6,9 +6,9 @@
 	<select id="selectAllWithSorted" parameterType="sort" resultType="statistic">
 		SELECT *
 		FROM statistic
-		<if test="orderList != null">
+		<if test="sort.orderList != null">
 			ORDER BY
-			<foreach collection="orderList" index="index" item="order" separator=",">
+			<foreach collection="sort.orderList" index="index" item="order" separator=",">
 				${order.field} ${order.direction}
 			</foreach>
 		</if>

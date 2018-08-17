@@ -39,6 +39,7 @@ public class GlobalExceptionHandler {
 	 */
 	@ExceptionHandler(value = Exception.class)
 	public Object defaultExceptionHandler(Exception e) {
+		e.printStackTrace();
 		RestfulResult restfulResult = new RestfulResult();
 		restfulResult.setMsg(e.getMessage());
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(restfulResult);

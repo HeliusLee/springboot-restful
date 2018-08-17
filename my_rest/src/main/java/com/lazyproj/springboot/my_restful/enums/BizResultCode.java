@@ -8,25 +8,27 @@ import org.springframework.http.HttpStatus;
  * @Description
  */
 public enum BizResultCode implements ResultCode {
-	SIGN_WRONG("1000", "签名错误"),;
-	private final String code;
+	OK(200,"OK"),
+	SIGN_WRONG(1000, "签名错误"),;
+
+	private final int code;
 	private final String msg;
 	private final HttpStatus httpStatus;
 
-	BizResultCode(String code, String msg) {
+	BizResultCode(int code, String msg) {
 		this.code = code;
 		this.msg = msg;
 		this.httpStatus = HttpStatus.BAD_REQUEST;
 	}
 
-	BizResultCode(String code, String msg, HttpStatus httpStatus) {
+	BizResultCode(int code, String msg, HttpStatus httpStatus) {
 		this.code = code;
 		this.msg = msg;
 		this.httpStatus = httpStatus;
 	}
 
 	@Override
-	public String code() {
+	public int code() {
 		return code;
 	}
 

@@ -6,7 +6,7 @@ package com.lazyproj.springboot.my_restful.frame.restful;
  * @Description
  */
 public class Page {
-	private int total;// 总页数
+	private long total;// 总页数
 	private int	page;// 当前页
 	private int size;// 显示条数
 	private String prev;// 前一页url
@@ -17,11 +17,17 @@ public class Page {
 		this.size = size;
 	}
 
-	public int getTotal() {
+	public Page(long total, int page, int size) {
+		this.total = total;
+		this.page = page;
+		this.size = size;
+	}
+
+	public long getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
 
