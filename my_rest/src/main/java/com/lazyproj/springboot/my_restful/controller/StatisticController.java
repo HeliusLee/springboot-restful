@@ -5,7 +5,9 @@ import com.github.pagehelper.PageInfo;
 import com.lazyproj.springboot.my_restful.enums.ResultCode;
 import com.lazyproj.springboot.my_restful.exception.BizException;
 import com.lazyproj.springboot.my_restful.frame.Result;
+import com.lazyproj.springboot.my_restful.frame.ResultFormat;
 import com.lazyproj.springboot.my_restful.frame.restful.Page;
+import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
 import com.lazyproj.springboot.my_restful.pojo.domain.Sort;
 import com.lazyproj.springboot.my_restful.pojo.entity.Statistic;
 import com.lazyproj.springboot.my_restful.service.IStatisticService;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@ResultFormat
 @RestController
 //@RequestMapping("/api/v1/statistics")
 public class StatisticController {
@@ -31,6 +34,7 @@ public class StatisticController {
 
 	// 查询列表
 	@GetMapping("/api/v1/statistics")
+	@ResponseStatus
 	public PageInfo<Statistic> getStatisticList(@RequestParam(name = "page", required = false) Integer pageNum,
 								   @RequestParam(name = "size", required = false) Integer pageSize) {
 		String sortStr = req.getParameter("sort");

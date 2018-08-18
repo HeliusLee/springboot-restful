@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * @Description
  */
 @Component
-public class ResponseResultInterceptor implements HandlerInterceptor {
+public class ResultFormatInterceptor implements HandlerInterceptor {
 	public static final String RESULT_FORMAT = "RESULT_FORMAT";
 
 	@Override
