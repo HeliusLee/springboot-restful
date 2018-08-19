@@ -11,6 +11,7 @@ import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
 import com.lazyproj.springboot.my_restful.pojo.domain.Sort;
 import com.lazyproj.springboot.my_restful.pojo.entity.Statistic;
 import com.lazyproj.springboot.my_restful.service.IStatisticService;
+import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
 import com.lazyproj.springboot.my_restful.utils.RestfulResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,6 @@ public class StatisticController {
 
 	// 查询列表
 	@GetMapping("/api/v1/statistics")
-	@ResponseStatus
 	public PageInfo<Statistic> getStatisticList(@RequestParam(name = "page", required = false) Integer pageNum,
 								   @RequestParam(name = "size", required = false) Integer pageSize) {
 		String sortStr = req.getParameter("sort");
@@ -50,8 +50,7 @@ public class StatisticController {
 		}
 
 		PageInfo<Statistic> statisticPageInfo = statisticService.getStatisticList(page, sort);
-		System.out.println(statisticPageInfo.getPageNum());
-//		return RestfulResultUtils.success(statisticPageInfo);
+		System.out.println(RequestContextHolderUtils.getResponse().getStatus());
 		return statisticPageInfo;
 	}
 

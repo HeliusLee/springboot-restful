@@ -9,6 +9,7 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,50 +30,55 @@ public class RestfulPagingAspect {
 	private void controllerPointcut() {
 	}
 
-	@Around("controllerPointcut()")
-	public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		Object[] objects = proceedingJoinPoint.getArgs();// 获取目标参数
-		Signature sig = proceedingJoinPoint.getSignature();// 获取目标签名
-
-		// 判断是否方法签名
-		if (!(sig instanceof MethodSignature)) {// 否
-			throw new IllegalArgumentException("该注解只能用于方法");
-		}
-
-		MethodSignature msig = (MethodSignature) sig;
-		Object target = proceedingJoinPoint.getTarget();// 获取目标对象
-		Method currentMethod = target.getClass().getMethod(msig.getName(), msig.getParameterTypes());// 获取注解方法对象
-		Class returnType = msig.getReturnType();// 获取返回类型
-
-		// 判断是否包含@ResponseBody注解
-		if (currentMethod.getAnnotation(ResponseBody.class) == null && target.getClass().getAnnotation(RestController.class) == null) {// 否
-			return proceedingJoinPoint.proceed();
-		}
-
-		RestfulResult restfulResult = new RestfulResult();
-
-		Object result;
-		StringBuffer stringBuffer = new StringBuffer();
-
-		try {
-			result = proceedingJoinPoint.proceed();// 执行方法
-		} catch (Throwable e) {
-			throw e;
-		}
-
-		System.out.println(result.getClass());
-		if (!(result instanceof PageInfo)) {
-			restfulResult.setData(result);
-			return restfulResult;
-		}
-
-		PageInfo pageInfo = ((PageInfo) result);
-		if (pageInfo.getPageNum() == 0) {
-			restfulResult.setData(pageInfo.getList());
-		}else {
-			restfulResult.setData(pageInfo.getList());
-			restfulResult.setPaging(new Page(pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize()));
-		}
-		return restfulResult;
+	@AfterReturning("controllerPointcut()")
+	public void afterReturning (JoinPoint joinPoint) {
+		Object target = joinPoint.getTarget();
+		System.out.println(target);
 	}
+//	@Around("controllerPointcut()")
+//	public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+//		Object[] objects = proceedingJoinPoint.getArgs();// 获取目标参数
+//		Signature sig = proceedingJoinPoint.getSignature();// 获取目标签名
+//
+//		// 判断是否方法签名
+//		if (!(sig instanceof MethodSignature)) {// 否
+//			throw new IllegalArgumentException("该注解只能用于方法");
+//		}
+//
+//		MethodSignature msig = (MethodSignature) sig;
+//		Object target = proceedingJoinPoint.getTarget();// 获取目标对象
+//		Method currentMethod = target.getClass().getMethod(msig.getName(), msig.getParameterTypes());// 获取注解方法对象
+//		Class returnType = msig.getReturnType();// 获取返回类型
+//
+//		// 判断是否包含@ResponseBody注解
+//		if (currentMethod.getAnnotation(ResponseBody.class) == null && target.getClass().getAnnotation(RestController.class) == null) {// 否
+//			return proceedingJoinPoint.proceed();
+//		}
+//
+//		RestfulResult restfulResult = new RestfulResult();
+//
+//		Object result;
+//		StringBuffer stringBuffer = new StringBuffer();
+//
+//		try {
+//			result = proceedingJoinPoint.proceed();// 执行方法
+//		} catch (Throwable e) {
+//			throw e;
+//		}
+//
+//		System.out.println(result.getClass());
+//		if (!(result instanceof PageInfo)) {
+//			restfulResult.setData(result);
+//			return restfulResult;
+//		}
+//
+//		PageInfo pageInfo = ((PageInfo) result);
+//		if (pageInfo.getPageNum() == 0) {
+//			restfulResult.setData(pageInfo.getList());
+//		}else {
+//			restfulResult.setData(pageInfo.getList());
+//			restfulResult.setPaging(new Page(pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize()));
+//		}
+//		return restfulResult;
+//	}
 }

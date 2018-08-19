@@ -1,6 +1,7 @@
 package com.lazyproj.springboot.my_restful.handler;
 
 import com.github.pagehelper.PageInfo;
+import com.lazyproj.springboot.my_restful.frame.HttpMethodInterceptor;
 import com.lazyproj.springboot.my_restful.frame.Result;
 import com.lazyproj.springboot.my_restful.frame.ResultFormat;
 import com.lazyproj.springboot.my_restful.frame.ResultFormatInterceptor;
@@ -8,6 +9,8 @@ import com.lazyproj.springboot.my_restful.frame.restful.Page;
 import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
 import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -27,8 +30,7 @@ public class ResultFormatHandler implements ResponseBodyAdvice {
 	public boolean supports(MethodParameter methodParameter, Class aClass) {
 		ResultFormat resultFormatAnn = (ResultFormat) RequestContextHolderUtils.getRequest().getAttribute(ResultFormatInterceptor.RESULT_FORMAT);
 		// 判断是requestAttr中是否存在RESULT_FORMAT
-//		return resultFormatAnn != null;
-		return true;
+		return resultFormatAnn != null;
 	}
 
 	@Override
@@ -40,7 +42,11 @@ public class ResultFormatHandler implements ResponseBodyAdvice {
 			RestfulResult restfulResult = new RestfulResult();
 			if (resultClazz.isInstance(o)) {// 已经被格式化过了(如统一异常处理)
 				return o;
-			} else if (!(o instanceof PageInfo)) {// 不是PageInfo雷,没有分页结果
+			}
+			if (HttpMethod.POST == RequestContextHolderUtils.getRequest().getAttribute(HttpMethodInterceptor.HTTP_METHOD)) {
+				resp.setStatusCode(HttpStatus.CREATED);
+			}
+			if (!(o instanceof PageInfo)) {// 不是PageInfo类,没有分页结果
 				restfulResult.setData(o);
 				return restfulResult;
 			}
@@ -49,7 +55,7 @@ public class ResultFormatHandler implements ResponseBodyAdvice {
 			// 判断是否分页
 			if (pageInfo.getPageNum() == 0) {// pageNum = 0 即返回所有数据,没有分页
 				restfulResult.setData(pageInfo.getList());
-			}else {// 分页了
+			} else {// 分页了
 				restfulResult.setData(pageInfo.getList());
 				restfulResult.setPaging(new Page(pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize()));
 			}

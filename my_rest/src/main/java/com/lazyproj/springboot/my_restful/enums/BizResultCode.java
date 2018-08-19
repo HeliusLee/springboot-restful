@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
  * @Description
  */
 public enum BizResultCode implements ResultCode {
-	OK(200,"OK"),
+	OK(1,"OK"),
 	SIGN_WRONG(1000, "签名错误"),;
 
 	private final int code;

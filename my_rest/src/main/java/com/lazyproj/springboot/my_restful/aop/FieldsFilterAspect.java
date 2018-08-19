@@ -2,6 +2,7 @@ package com.lazyproj.springboot.my_restful.aop;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lazyproj.springboot.my_restful.frame.JsonMixIn;
+import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
 import com.lazyproj.springboot.my_restful.utils.RestfulApiUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -30,7 +31,6 @@ public class FieldsFilterAspect {
 
 	@Around("controllerPointcut()")
 	public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-
 		Object[] objects = proceedingJoinPoint.getArgs();// 获取目标参数
 		Signature sig = proceedingJoinPoint.getSignature();// 获取目标签名
 

@@ -1,12 +1,13 @@
 package com.lazyproj.springboot.my_restful.pojo.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Statistic {
 	private String statisticId;
 	private String userId;
 	private String title;
-	private String fields;
+	private List<String> fields;
 	private Date createTime;
 
 	public String getStatisticId() {
@@ -33,11 +34,11 @@ public class Statistic {
 		this.title = title;
 	}
 
-	public String getFields() {
+	public List<String> getFields() {
 		return fields;
 	}
 
-	public void setFields(String fields) {
+	public void setFields(List<String> fields) {
 		this.fields = fields;
 	}
 
