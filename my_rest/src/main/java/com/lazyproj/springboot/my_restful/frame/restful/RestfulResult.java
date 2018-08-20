@@ -16,13 +16,13 @@ public class RestfulResult<T> implements Result {
 	private static final String DEFAULT_MESSAGE = "no more details";
 
 	private T data;// 响应数据
-	private int status;// 响应状态码
+	private int code;// 响应状态码
 	private String msg;// 响应详情
 	private Page paging;// 分页信息
 	private String links;// 相关链接
 
 	public RestfulResult() {
-		this.status = BizResultCode.OK.code();
+		this.code = BizResultCode.OK.code();
 		this.msg = DEFAULT_MESSAGE;
 	}
 
@@ -34,12 +34,12 @@ public class RestfulResult<T> implements Result {
 		this.data = data;
 	}
 
-	public int getStatus() {
-		return status;
+	public int getCode() {
+		return code;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public String getMsg() {

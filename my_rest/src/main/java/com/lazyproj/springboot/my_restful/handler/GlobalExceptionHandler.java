@@ -27,10 +27,10 @@ public class GlobalExceptionHandler extends BaseExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = BizException.class)
-	public ResponseEntity<RestfulResult> bizExceptionHandler(BizException e) {
+	public Object bizExceptionHandler(BizException e) {
 		e.printStackTrace();
 		RestfulResult restfulResult = new RestfulResult();
-		restfulResult.setStatus(e.getBizCode());
+		restfulResult.setCode(e.getBizCode());
 		restfulResult.setMsg(e.getMessage());
 		return ResponseEntity.status(e.getHttpStatus()).body(restfulResult);
 	}

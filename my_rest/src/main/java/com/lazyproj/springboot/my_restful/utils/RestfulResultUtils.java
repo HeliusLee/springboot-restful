@@ -24,7 +24,7 @@ public class RestfulResultUtils implements ResultUtils {
 
 	public static Result success(int code, String msg, Object obj) {
 		RestfulResult result = (RestfulResult) success((Object) null);
-		result.setStatus(code);
+		result.setCode(code);
 		result.setMsg(msg);
 		return result;
 	}

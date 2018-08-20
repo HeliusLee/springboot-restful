@@ -4,15 +4,11 @@ package com.lazyproj.springboot.my_restful.controller;
 import com.github.pagehelper.PageInfo;
 import com.lazyproj.springboot.my_restful.enums.ResultCode;
 import com.lazyproj.springboot.my_restful.exception.BizException;
-import com.lazyproj.springboot.my_restful.frame.Result;
 import com.lazyproj.springboot.my_restful.frame.ResultFormat;
 import com.lazyproj.springboot.my_restful.frame.restful.Page;
-import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
 import com.lazyproj.springboot.my_restful.pojo.domain.Sort;
 import com.lazyproj.springboot.my_restful.pojo.entity.Statistic;
 import com.lazyproj.springboot.my_restful.service.IStatisticService;
-import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
-import com.lazyproj.springboot.my_restful.utils.RestfulResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +46,6 @@ public class StatisticController {
 		}
 
 		PageInfo<Statistic> statisticPageInfo = statisticService.getStatisticList(page, sort);
-		System.out.println(RequestContextHolderUtils.getResponse().getStatus());
 		return statisticPageInfo;
 	}
 
