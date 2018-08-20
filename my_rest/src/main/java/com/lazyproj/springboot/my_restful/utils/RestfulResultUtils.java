@@ -1,9 +1,8 @@
 package com.lazyproj.springboot.my_restful.utils;
 
 import com.lazyproj.springboot.my_restful.enums.ResultCode;
-import com.lazyproj.springboot.my_restful.frame.Result;
+import com.lazyproj.springboot.my_restful.frame.response.Result;
 import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
-import org.springframework.http.HttpStatus;
 
 /**
  * @Author heliuslee@live.cn

@@ -4,9 +4,9 @@ package com.lazyproj.springboot.my_restful.controller;
 import com.github.pagehelper.PageInfo;
 import com.lazyproj.springboot.my_restful.enums.ResultCode;
 import com.lazyproj.springboot.my_restful.exception.BizException;
-import com.lazyproj.springboot.my_restful.frame.ResultFormat;
+import com.lazyproj.springboot.my_restful.frame.response.ResultFormat;
 import com.lazyproj.springboot.my_restful.frame.restful.Page;
-import com.lazyproj.springboot.my_restful.pojo.domain.Sort;
+import com.lazyproj.springboot.my_restful.frame.restful.Sort;
 import com.lazyproj.springboot.my_restful.pojo.entity.Statistic;
 import com.lazyproj.springboot.my_restful.service.IStatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import java.util.List;
 
 @ResultFormat
 @RestController
-//@RequestMapping("/api/v1/statistics")
 public class StatisticController {
 	@Autowired
 	private IStatisticService statisticService;

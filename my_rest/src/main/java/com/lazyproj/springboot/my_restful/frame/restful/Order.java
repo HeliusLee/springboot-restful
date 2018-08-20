@@ -1,4 +1,4 @@
-package com.lazyproj.springboot.my_restful.pojo.domain;
+package com.lazyproj.springboot.my_restful.frame.restful;
 
 /**
  * @Author heliuslee@live.cn

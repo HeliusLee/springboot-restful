@@ -2,10 +2,8 @@ package com.lazyproj.springboot.my_restful.handler;
 
 import com.lazyproj.springboot.my_restful.exception.BizException;
 import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
-import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @ControllerAdvice
-public class GlobalExceptionHandler extends BaseExceptionHandler {
+public class GlobalExceptionHandler {
 	private static final String DEFAULT_MESSAGE = "No message available";// 没有错误信息时默认返回
 	/**
 	 * 处理业务异常
@@ -28,7 +26,6 @@ public class GlobalExceptionHandler extends BaseExceptionHandler {
 	 */
 	@ExceptionHandler(value = BizException.class)
 	public Object bizExceptionHandler(BizException e) {
-		e.printStackTrace();
 		RestfulResult restfulResult = new RestfulResult();
 		restfulResult.setCode(e.getBizCode());
 		restfulResult.setMsg(e.getMessage());
@@ -42,7 +39,6 @@ public class GlobalExceptionHandler extends BaseExceptionHandler {
 	 */
 	@ExceptionHandler(value = Exception.class)
 	public Object defaultExceptionHandler(Exception e) {
-		e.printStackTrace();
 		RestfulResult restfulResult = new RestfulResult();
 		restfulResult.setMsg(e.getMessage());
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(restfulResult);

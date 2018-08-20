@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lazyproj.springboot.my_restful.dao.IStatisticDao;
 import com.lazyproj.springboot.my_restful.frame.restful.Page;
-import com.lazyproj.springboot.my_restful.pojo.domain.Sort;
+import com.lazyproj.springboot.my_restful.frame.restful.Sort;
 import com.lazyproj.springboot.my_restful.pojo.entity.Statistic;
 import com.lazyproj.springboot.my_restful.service.IStatisticService;
 import org.springframework.beans.factory.annotation.Autowired;

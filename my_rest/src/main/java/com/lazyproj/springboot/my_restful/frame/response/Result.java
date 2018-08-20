@@ -1,4 +1,4 @@
-package com.lazyproj.springboot.my_restful.frame;
+package com.lazyproj.springboot.my_restful.frame.response;
 
 import java.io.Serializable;
 

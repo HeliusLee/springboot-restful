@@ -57,22 +57,22 @@ public class RestfulPagingAspect {
 //
 //		RestfulResult restfulResult = new RestfulResult();
 //
-//		Object result;
+//		Object response;
 //		StringBuffer stringBuffer = new StringBuffer();
 //
 //		try {
-//			result = proceedingJoinPoint.proceed();// 执行方法
+//			response = proceedingJoinPoint.proceed();// 执行方法
 //		} catch (Throwable e) {
 //			throw e;
 //		}
 //
-//		System.out.println(result.getClass());
-//		if (!(result instanceof PageInfo)) {
-//			restfulResult.setData(result);
+//		System.out.println(response.getClass());
+//		if (!(response instanceof PageInfo)) {
+//			restfulResult.setData(response);
 //			return restfulResult;
 //		}
 //
-//		PageInfo pageInfo = ((PageInfo) result);
+//		PageInfo pageInfo = ((PageInfo) response);
 //		if (pageInfo.getPageNum() == 0) {
 //			restfulResult.setData(pageInfo.getList());
 //		}else {

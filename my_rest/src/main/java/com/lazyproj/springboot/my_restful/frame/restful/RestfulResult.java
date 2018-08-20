@@ -2,7 +2,7 @@ package com.lazyproj.springboot.my_restful.frame.restful;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.lazyproj.springboot.my_restful.enums.BizResultCode;
-import com.lazyproj.springboot.my_restful.frame.Result;
+import com.lazyproj.springboot.my_restful.frame.response.Result;
 
 /**
  * RESTful通用返回格式
@@ -20,6 +20,7 @@ public class RestfulResult<T> implements Result {
 	private String msg;// 响应详情
 	private Page paging;// 分页信息
 	private String links;// 相关链接
+	private Object errors;
 
 	public RestfulResult() {
 		this.code = BizResultCode.OK.code();
@@ -64,5 +65,13 @@ public class RestfulResult<T> implements Result {
 
 	public void setLinks(String links) {
 		this.links = links;
+	}
+
+	public Object getErrors() {
+		return errors;
+	}
+
+	public void setErrors(Object errors) {
+		this.errors = errors;
 	}
 }

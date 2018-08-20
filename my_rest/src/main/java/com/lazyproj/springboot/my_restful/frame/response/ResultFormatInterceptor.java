@@ -1,12 +1,8 @@
-package com.lazyproj.springboot.my_restful.frame;
+package com.lazyproj.springboot.my_restful.frame.response;
 
-import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

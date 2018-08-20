@@ -1,6 +1,6 @@
 package com.lazyproj.springboot.my_restful.dao;
 
-import com.lazyproj.springboot.my_restful.pojo.domain.Sort;
+import com.lazyproj.springboot.my_restful.frame.restful.Sort;
 import com.lazyproj.springboot.my_restful.pojo.entity.Statistic;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;

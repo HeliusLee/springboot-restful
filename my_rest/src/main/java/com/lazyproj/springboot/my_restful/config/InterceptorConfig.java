@@ -1,7 +1,7 @@
 package com.lazyproj.springboot.my_restful.config;
 
 import com.lazyproj.springboot.my_restful.frame.HttpMethodInterceptor;
-import com.lazyproj.springboot.my_restful.frame.ResultFormatInterceptor;
+import com.lazyproj.springboot.my_restful.frame.response.ResultFormatInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

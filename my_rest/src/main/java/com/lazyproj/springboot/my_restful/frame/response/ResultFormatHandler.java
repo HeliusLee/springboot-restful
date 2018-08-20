@@ -1,10 +1,7 @@
-package com.lazyproj.springboot.my_restful.handler;
+package com.lazyproj.springboot.my_restful.frame.response;
 
 import com.github.pagehelper.PageInfo;
 import com.lazyproj.springboot.my_restful.frame.HttpMethodInterceptor;
-import com.lazyproj.springboot.my_restful.frame.Result;
-import com.lazyproj.springboot.my_restful.frame.ResultFormat;
-import com.lazyproj.springboot.my_restful.frame.ResultFormatInterceptor;
 import com.lazyproj.springboot.my_restful.frame.restful.Page;
 import com.lazyproj.springboot.my_restful.frame.restful.RestfulResult;
 import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
