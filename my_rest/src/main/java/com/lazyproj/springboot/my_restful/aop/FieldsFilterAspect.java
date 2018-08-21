@@ -2,7 +2,6 @@ package com.lazyproj.springboot.my_restful.aop;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lazyproj.springboot.my_restful.frame.JsonMixIn;
-import com.lazyproj.springboot.my_restful.utils.RequestContextHolderUtils;
 import com.lazyproj.springboot.my_restful.utils.RestfulApiUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
